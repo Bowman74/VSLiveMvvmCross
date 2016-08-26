@@ -4,13 +4,13 @@ using VsLiveMvvmCross.Core.Services;
 
 namespace VsLiveMvvmCross.Core.ViewModels
 {
-    public class EditCustomer : BaseViewModel
+    public class EditCustomerViewModel : BaseViewModel
     {
         private ICustomerService _customerService;
         private Guid _customerId;
         private Customer _customer; 
 
-        public EditCustomer(ICustomerService customerService)
+        public EditCustomerViewModel(ICustomerService customerService)
         {
             _customerService = customerService;
         }

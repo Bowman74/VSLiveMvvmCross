@@ -44,7 +44,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
 
         public void CustomerSelected(Customer customer)
         {
-            ShowViewModel<EditCustomer>(new { customerId = customer.CustomerId });
+            ShowViewModel<EditCustomerViewModel>(new { customerId = customer.CustomerId });
         }
     }
 }

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <style name="Theme.MyTheme" parent="@style/Theme.AppCompat.Light.NoActionBar" >
+        <item name="colorPrimary">@color/custom_primary</item>
+        <item name="colorPrimaryDark">@color/custom_secondary</item>
+        <item name="colorAccent">@color/custom_accent</item> 
+    </style>
+</resources>

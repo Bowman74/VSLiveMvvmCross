@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <item name="custom_primary" type="color">#3F51B5</item>
+    <item name="custom_secondary" type="color">#303F9F</item>
+    <item name="custom_accent" type="color">#7C4DFF</item>
+</resources>

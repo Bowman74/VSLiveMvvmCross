@@ -120,10 +120,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Plumbing\" />
+    <Folder Include="Storyboards\" />
+    <Folder Include="ViewControllers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Customers.storyboard" />
+    <InterfaceDefinition Include="Storyboards\EditCustomer.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -136,6 +140,17 @@
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plumbing\Setup.cs" />
+    <Compile Include="Plumbing\ViewsContainer.cs" />
+    <Compile Include="ViewControllers\CustomerListViewController.cs" />
+    <Compile Include="ViewControllers\CustomerListViewController.designer.cs">
+      <DependentUpon>CustomerListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\BaseViewController.cs" />
+    <Compile Include="ViewControllers\EditCustomerViewController.cs" />
+    <Compile Include="ViewControllers\EditCustomerViewController.designer.cs">
+      <DependentUpon>EditCustomerViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

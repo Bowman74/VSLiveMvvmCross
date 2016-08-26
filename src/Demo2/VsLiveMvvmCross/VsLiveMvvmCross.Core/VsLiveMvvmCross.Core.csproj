@@ -38,7 +38,7 @@
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />
-    <Compile Include="ViewModels\EditCustomer.cs" />
+    <Compile Include="ViewModels\EditCustomerViewModel.cs" />
     <Compile Include="Plumbing\App.cs" />
   </ItemGroup>
   <ItemGroup>
