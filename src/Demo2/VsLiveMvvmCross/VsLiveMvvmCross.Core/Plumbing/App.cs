@@ -7,15 +7,12 @@ namespace VsLiveMvvmCross.Core.Plumbing
 {
     public class App : MvxApplication
     {
-        public App()
-        {
-        }
-
         public override void Initialize()
         {
             base.Initialize();
 
             Mvx.RegisterType<ICustomerService, CustomerService>();
+            Mvx.RegisterSingleton<ICustomerService>(new CustomerService());
 
             RegisterAppStart<CustomerListViewModel>();
         }

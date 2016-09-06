@@ -12,8 +12,7 @@ namespace VsLiveMvvmCross.Activities
         , ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
-        public SplashScreen()
-            : base(Resource.Layout.splash_screen)
+        public SplashScreen() : base(Resource.Layout.splash_screen)
         {
         }
     }

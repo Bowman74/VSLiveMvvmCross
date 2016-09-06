@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+using MvvmCross.Core.ViewModels;
 using VsLiveMvvmCross.Core.Models;
 using VsLiveMvvmCross.Core.Services;
 
@@ -20,11 +22,25 @@ namespace VsLiveMvvmCross.Core.ViewModels
             _customerId = customerId;
         }
 
+        protected override void InitFromBundle(IMvxBundle parameters)
+        {
+            string custId;
+            parameters.Data.TryGetValue("customerId", out custId);
+            _customerId = Guid.Parse(custId);
+        }
+
         public override void Start()
         {
             base.Start();
-            // Do something to load the customer based on the customer id.
-            Customer = _customerService.GetCustomerById(_customerId);
+
+            if (_customerId == Guid.Empty)
+            {
+                Customer = _customerService.CreateNewCustomer();
+            }
+            else
+            {
+                Customer = _customerService.GetCustomerById(_customerId);
+            }
         }
 
         public Customer Customer
@@ -35,6 +51,26 @@ namespace VsLiveMvvmCross.Core.ViewModels
                 _customer = value;
                 RaisePropertyChanged(() => Customer);
             }
+        }
+
+        private ICommand _saveCustomerCommand;
+        public ICommand SaveCustomerCommand
+        {
+            get
+            {
+                return _saveCustomerCommand ?? (_saveCustomerCommand =
+                    new MvxCommand(SaveCustomer));
+            }
+        }
+
+        public void SaveCustomer()
+        {
+            if (_customerId == Guid.Empty)
+            {
+                var customerList = _customerService.GetCustomerList();
+                customerList.Add(Customer);
+            }
+            Close(this);
         }
     }
 }

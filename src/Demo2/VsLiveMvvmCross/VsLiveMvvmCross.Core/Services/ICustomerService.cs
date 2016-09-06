@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VsLiveMvvmCross.Core.Models;
 
 namespace VsLiveMvvmCross.Core.Services
 {
     public interface ICustomerService
     {
-        IList<Customer> GetCustomerList();
+        ObservableCollection<Customer> GetCustomerList();
         Customer GetCustomerById(Guid customerId);
+        Customer CreateNewCustomer();
     }
 }

@@ -25,6 +25,10 @@ namespace VsLiveMvvmCross.Plumbing
             {
                 return CustomersStoryboard;
             }
+            else if (viewType == typeof(EditCustomerViewController))
+            {
+                return EditCustomerStoryboard;
+            }
             else
             {
                 throw new ArgumentException($"The type {viewType.Name} does not have a Storyboard mapped.");

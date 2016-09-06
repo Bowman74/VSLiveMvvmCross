@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using VsLiveMvvmCross.Core.Models;
@@ -10,6 +11,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
     public class CustomerListViewModel : BaseViewModel
     {
         private ICustomerService _customerService;
+
         public CustomerListViewModel(ICustomerService customerService)
         {
             _customerService = customerService;
@@ -19,10 +21,11 @@ namespace VsLiveMvvmCross.Core.ViewModels
         {
             base.Start();
             Customers = _customerService.GetCustomerList();
+            AddCustomer();
         }
 
-        private IList<Customer> _customerList;
-        public IList<Customer> Customers
+        private ObservableCollection<Customer> _customerList;
+        public ObservableCollection<Customer> Customers
         {
             get { return _customerList; }
             set
@@ -45,6 +48,23 @@ namespace VsLiveMvvmCross.Core.ViewModels
         public void CustomerSelected(Customer customer)
         {
             ShowViewModel<EditCustomerViewModel>(new { customerId = customer.CustomerId });
+        }
+
+        private ICommand _addCustomerCommand;
+        public ICommand AddCustomerCommand
+        {
+            get
+            {
+                return _addCustomerCommand ?? (_addCustomerCommand =
+                    new MvxCommand(AddCustomer));
+            }
+        }
+
+        public void AddCustomer()
+        {
+            var bundle = new MvxBundle();
+            bundle.Write(new System.Collections.Generic.Dictionary<string, string>() { { "customerId", "1234" }});
+            ShowViewModel<EditCustomerViewModel>(bundle);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using VsLiveMvvmCross.Core.Models;
 
@@ -9,9 +10,9 @@ namespace VsLiveMvvmCross.Core.Services
     {
         private string _firstCustomerGuid = "a27b5bfb-535a-42bd-b1a6-afbec79c8fef";
         private string _secondCustomerGuid = "cf9d052f-7619-4b20-b38b-62c7a71e0d18";
-        private IList<Customer> _customerStore;
+        private ObservableCollection<Customer> _customerStore;
 
-        public IList<Customer> GetCustomerList()
+        public ObservableCollection<Customer> GetCustomerList()
         {
             return GetCustomerStore();
         }
@@ -22,11 +23,11 @@ namespace VsLiveMvvmCross.Core.Services
             return GetCustomerStore().SingleOrDefault(c => c.CustomerId == customerId);
         }
 
-        private IList<Customer> GetCustomerStore()
+        private ObservableCollection<Customer> GetCustomerStore()
         {
             if (_customerStore == null)
             {
-                _customerStore = new List<Customer>
+                _customerStore = new ObservableCollection<Customer>
                 {
                     new Customer
                     {
@@ -43,6 +44,14 @@ namespace VsLiveMvvmCross.Core.Services
                 };
             }
             return _customerStore;
+        }
+
+        public Customer CreateNewCustomer()
+        {
+            return new Customer
+            {
+                CustomerId = Guid.NewGuid()
+            };
         }
     }
 }
