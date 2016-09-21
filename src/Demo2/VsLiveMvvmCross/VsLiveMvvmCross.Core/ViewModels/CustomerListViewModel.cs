@@ -21,7 +21,6 @@ namespace VsLiveMvvmCross.Core.ViewModels
         {
             base.Start();
             Customers = _customerService.GetCustomerList();
-            AddCustomer();
         }
 
         private ObservableCollection<Customer> _customerList;
@@ -62,9 +61,8 @@ namespace VsLiveMvvmCross.Core.ViewModels
 
         public void AddCustomer()
         {
-            var bundle = new MvxBundle();
-            bundle.Write(new System.Collections.Generic.Dictionary<string, string>() { { "customerId", "1234" }});
-            ShowViewModel<EditCustomerViewModel>(bundle);
+
+            ShowViewModel<EditCustomerViewModel>(new { customerId = Guid.Empty });
         }
     }
 }

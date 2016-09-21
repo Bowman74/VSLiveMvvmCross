@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using VsLiveMvvmCross.Core.Models;
@@ -9,12 +10,15 @@ namespace VsLiveMvvmCross.Core.ViewModels
     public class EditCustomerViewModel : BaseViewModel
     {
         private ICustomerService _customerService;
+        private IUserDialogService _userDialogService;
         private Guid _customerId;
-        private Customer _customer; 
+        private Customer _customer;
+        private bool _isNew;
 
-        public EditCustomerViewModel(ICustomerService customerService)
+        public EditCustomerViewModel(ICustomerService customerService, IUserDialogService userDialogService)
         {
             _customerService = customerService;
+            _userDialogService = userDialogService;
         }
 
         public void Init(Guid customerId)
@@ -22,11 +26,14 @@ namespace VsLiveMvvmCross.Core.ViewModels
             _customerId = customerId;
         }
 
-        protected override void InitFromBundle(IMvxBundle parameters)
+        public bool IsNew
         {
-            string custId;
-            parameters.Data.TryGetValue("customerId", out custId);
-            _customerId = Guid.Parse(custId);
+            get { return _isNew; }
+            set
+            {
+                _isNew = value;
+                RaisePropertyChanged(() => IsNew);
+            }
         }
 
         public override void Start()
@@ -36,10 +43,12 @@ namespace VsLiveMvvmCross.Core.ViewModels
             if (_customerId == Guid.Empty)
             {
                 Customer = _customerService.CreateNewCustomer();
+                IsNew = true;
             }
             else
             {
                 Customer = _customerService.GetCustomerById(_customerId);
+                IsNew = false;
             }
         }
 
@@ -65,12 +74,40 @@ namespace VsLiveMvvmCross.Core.ViewModels
 
         public void SaveCustomer()
         {
-            if (_customerId == Guid.Empty)
+            Customer = _customerService.UpsertCustomer(Customer);
+            IsNew = false;
+        }
+
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
             {
-                var customerList = _customerService.GetCustomerList();
-                customerList.Add(Customer);
+                return _closeCommand ?? (_closeCommand =
+                    new MvxCommand(Close));
             }
+        }
+
+        public void Close()
+        {
             Close(this);
+        }
+
+        private ICommand _deleteCommand;
+        public ICommand DeleteCommand
+        {
+            get { return _deleteCommand ?? (_deleteCommand = new MvxCommand(async () => { await DeleteAsync(); } ));
+        }
+        }
+
+        public async Task DeleteAsync()
+        {
+            var response = await _userDialogService.GetResponseAsync("Delete Customer", "Do you want to delete this customer?", "Yes", "No");
+            if (response)
+            {
+                _customerService.DeleteCustomer(Customer);
+                Close(this);
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MvvmCross.Plugins.Json;
 using VsLiveMvvmCross.Core.Models;
 
 namespace VsLiveMvvmCross.Core.Services
@@ -19,8 +19,15 @@ namespace VsLiveMvvmCross.Core.Services
 
         public Customer GetCustomerById(Guid customerId)
         {
-            //todo: Add code to return a customer
-            return GetCustomerStore().SingleOrDefault(c => c.CustomerId == customerId);
+            var storeCustomer = GetCustomerStore().SingleOrDefault(c => c.CustomerId == customerId);
+
+            // for the fake service just make a quick and dirty copy of the customer.
+            if (storeCustomer != null)
+            {
+                var serializer = new MvxJsonConverter();
+                return serializer.DeserializeObject<Customer>(serializer.SerializeObject(storeCustomer));
+            }
+            return null;
         }
 
         private ObservableCollection<Customer> GetCustomerStore()
@@ -52,6 +59,29 @@ namespace VsLiveMvvmCross.Core.Services
             {
                 CustomerId = Guid.NewGuid()
             };
+        }
+
+        public Customer UpsertCustomer(Customer customer)
+        {
+            var storeCustomer = GetCustomerStore().SingleOrDefault(c => c.CustomerId == customer.CustomerId);
+
+            if (storeCustomer != null)
+            {
+                storeCustomer.CustomerName = customer.CustomerName;
+                storeCustomer.ContactName = customer.ContactName;
+            }
+            else
+            {
+                var serializer = new MvxJsonConverter();
+                storeCustomer = serializer.DeserializeObject<Customer>(serializer.SerializeObject(customer));
+                GetCustomerStore().Add(storeCustomer);
+            }
+            return customer;
+        }
+
+        public void DeleteCustomer(Customer customer)
+        {
+            GetCustomerStore().Remove(GetCustomerStore().Single(c => c.CustomerId == customer.CustomerId));
         }
     }
 }

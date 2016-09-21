@@ -9,5 +9,7 @@ namespace VsLiveMvvmCross.Core.Services
         ObservableCollection<Customer> GetCustomerList();
         Customer GetCustomerById(Guid customerId);
         Customer CreateNewCustomer();
+        Customer UpsertCustomer(Customer customer);
+        void DeleteCustomer(Customer customer);
     }
 }

@@ -1,0 +1,43 @@
+﻿<views:MvxWindowsPage
+    x:Class="VsLiveMvvmCross.Uwp.EditCustomer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:views="using:MvvmCross.WindowsUWP.Views"
+    xmlns:conv="using:VsLiveMvvmCross.Uwp.Converters" >
+    <views:MvxWindowsPage.Resources>
+        <conv:NativeInvertedBoolValueConverter x:Name="InvertedBoolConverter"/>
+    </views:MvxWindowsPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Customer Id:" FontWeight="Bold" Margin="10" />
+            <TextBlock Grid.Column="1" Text="{x:Bind CustomerViewModel.Customer.CustomerId}" Margin="10" />
+        </Grid>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel>
+                <TextBlock Text="Customer Name"/>
+                <TextBox FontSize="24" Text="{x:Bind CustomerViewModel.Customer.CustomerName, Mode=TwoWay}" />
+                <TextBlock Text="Contact Name"/>
+                <TextBox FontSize="24" Text="{x:Bind CustomerViewModel.Customer.ContactName, Mode=TwoWay}" />
+            </StackPanel>
+
+        </Grid>
+        <Button Grid.Row="2" x:Name="saveButton" Content="Save" Command="{x:Bind CustomerViewModel.SaveCustomerCommand}" />
+        <Button Grid.Row="3" x:Name="deleteButton" Content="Delete" Command="{x:Bind CustomerViewModel.DeleteCommand}" IsEnabled="{x:Bind CustomerViewModel.IsNew, Converter={StaticResource InvertedBoolConverter}}" />
+    </Grid>
+</views:MvxWindowsPage>
