@@ -16,10 +16,19 @@ namespace VsLiveMvvmCross.ViewControllers
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton addButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView tblCustomers { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (addButton != null) {
+                addButton.Dispose ();
+                addButton = null;
+            }
+
             if (tblCustomers != null) {
                 tblCustomers.Dispose ();
                 tblCustomers = null;

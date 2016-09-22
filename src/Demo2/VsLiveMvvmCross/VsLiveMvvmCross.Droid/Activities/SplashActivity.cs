@@ -5,7 +5,7 @@ using MvvmCross.Droid.Views;
 namespace VsLiveMvvmCross.Activities
 {
     [Activity(
-        Label = "Labyrinth"
+        Label = "VsLiveMvvmCross"
         , MainLauncher = true
         , NoHistory = true
         , Icon = "@mipmap/icon"

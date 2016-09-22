@@ -15,7 +15,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="11" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="57" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="14" firstItem="11" firstAttribute="height" constant="21"/>
+                                </constraints>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="16" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="86" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <constraints>
+                                    <constraint id="19" firstItem="16" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="21" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="134" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="24" firstItem="21" firstAttribute="height" constant="21"/>
+                                </constraints>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="26" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="169" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <constraints>
+                                    <constraint id="30" firstItem="26" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="31" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="204" y="216" width="193" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="34" firstItem="31" firstAttribute="width" constant="193"/>
+                                    <constraint id="35" firstItem="31" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="32" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="204" y="267" width="193" height="30"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="38" firstItem="32" firstAttribute="width" constant="193"/>
+                                    <constraint id="39" firstItem="32" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="12" firstItem="11" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20"/>
+                            <constraint id="13" firstItem="6" firstAttribute="trailing" secondItem="11" secondAttribute="trailing" constant="20"/>
+                            <constraint id="15" firstItem="11" firstAttribute="top" secondItem="2" secondAttribute="bottom" constant="37"/>
+                            <constraint id="17" firstItem="16" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20"/>
+                            <constraint id="18" firstItem="6" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" constant="20"/>
+                            <constraint id="20" firstItem="16" firstAttribute="top" secondItem="11" secondAttribute="bottom" constant="8"/>
+                            <constraint id="22" firstItem="21" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20"/>
+                            <constraint id="23" firstItem="6" firstAttribute="trailing" secondItem="21" secondAttribute="trailing" constant="20"/>
+                            <constraint id="25" firstItem="21" firstAttribute="top" secondItem="16" secondAttribute="bottom" constant="18"/>
+                            <constraint id="27" firstItem="26" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20"/>
+                            <constraint id="28" firstItem="26" firstAttribute="top" secondItem="21" secondAttribute="bottom" constant="14"/>
+                            <constraint id="29" firstItem="6" firstAttribute="trailing" secondItem="26" secondAttribute="trailing" constant="20"/>
+                            <constraint id="33" firstItem="31" firstAttribute="centerX" secondItem="6" secondAttribute="centerX"/>
+                            <constraint id="36" firstItem="31" firstAttribute="top" secondItem="26" secondAttribute="bottom" constant="17"/>
+                            <constraint id="37" firstItem="32" firstAttribute="centerX" secondItem="6" secondAttribute="centerX"/>
+                            <constraint id="40" firstItem="32" firstAttribute="top" secondItem="31" secondAttribute="bottom" constant="21"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="customerName" destination="16" id="name-outlet-16"/>
+                        <outlet property="contactName" destination="26" id="name-outlet-26"/>
+                        <outlet property="saveCustomer" destination="31" id="name-outlet-31"/>
+                        <outlet property="deleteCustomer" destination="32" id="name-outlet-32"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

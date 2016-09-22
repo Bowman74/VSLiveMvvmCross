@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
@@ -30,7 +29,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
             set
             {
                 _customerList = value;
-                RaisePropertyChanged(() => Customers);
+                RaisePropertyChanged(nameof(Customers));
             }
         }
 

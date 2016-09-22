@@ -127,6 +127,7 @@
     <Folder Include="Plumbing\" />
     <Folder Include="Storyboards\" />
     <Folder Include="ViewControllers\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -152,6 +153,9 @@
     <Compile Include="ViewControllers\EditCustomerViewController.designer.cs">
       <DependentUpon>EditCustomerViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\CustomerListViewSource.cs" />
+    <Compile Include="ViewControllers\CustomerListCell.cs" />
+    <Compile Include="Services\UserDialogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VsLiveMvvmCross.Core\VsLiveMvvmCross.Core.csproj">

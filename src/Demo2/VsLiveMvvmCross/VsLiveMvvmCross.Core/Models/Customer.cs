@@ -12,7 +12,7 @@ namespace VsLiveMvvmCross.Core.Models
             set
             {
                 _customerId = value;
-                RaisePropertyChanged(() => CustomerId);
+                RaisePropertyChanged(nameof(CustomerId));
             }
 
         }
@@ -24,7 +24,7 @@ namespace VsLiveMvvmCross.Core.Models
             set
             {
                 _customerName = value;
-                RaisePropertyChanged(() => CustomerName);
+                RaisePropertyChanged(nameof(CustomerName));
             }
         }
 
@@ -35,7 +35,7 @@ namespace VsLiveMvvmCross.Core.Models
             set
             {
                 _contactName = value;
-                RaisePropertyChanged(() => ContactName);
+                RaisePropertyChanged(nameof(ContactName));
             }
         }
     }

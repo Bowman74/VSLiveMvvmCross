@@ -32,7 +32,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
             set
             {
                 _isNew = value;
-                RaisePropertyChanged(() => IsNew);
+                RaisePropertyChanged(nameof(IsNew));
             }
         }
 
@@ -58,7 +58,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
             private set
             {
                 _customer = value;
-                RaisePropertyChanged(() => Customer);
+                RaisePropertyChanged(nameof(Customer));
             }
         }
 
