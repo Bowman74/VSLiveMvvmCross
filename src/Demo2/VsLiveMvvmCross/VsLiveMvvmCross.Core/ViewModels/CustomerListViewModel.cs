@@ -28,8 +28,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
             get { return _customerList; }
             set
             {
-                _customerList = value;
-                RaisePropertyChanged(nameof(Customers));
+                SetProperty(ref _customerList, value);
             }
         }
 
@@ -60,7 +59,6 @@ namespace VsLiveMvvmCross.Core.ViewModels
 
         public void AddCustomer()
         {
-
             ShowViewModel<EditCustomerViewModel>(new { customerId = Guid.Empty });
         }
     }

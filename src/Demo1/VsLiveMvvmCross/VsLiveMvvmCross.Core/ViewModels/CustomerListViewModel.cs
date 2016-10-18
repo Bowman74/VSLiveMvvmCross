@@ -27,8 +27,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
             get { return _customerList; }
             set
             {
-                _customerList = value;
-                RaisePropertyChanged(() => Customers);
+                SetProperty(ref _customerList, value);
             }
         }
 

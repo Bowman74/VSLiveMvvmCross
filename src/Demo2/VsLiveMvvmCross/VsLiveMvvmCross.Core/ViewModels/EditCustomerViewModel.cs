@@ -57,8 +57,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
             get { return _customer; }
             private set
             {
-                _customer = value;
-                RaisePropertyChanged(nameof(Customer));
+                SetProperty(ref _customer, value);
             }
         }
 
