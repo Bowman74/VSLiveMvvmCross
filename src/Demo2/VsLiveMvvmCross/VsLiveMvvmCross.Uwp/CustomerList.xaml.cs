@@ -49,14 +49,8 @@ namespace VsLiveMvvmCross.Uwp
 
         public CustomerListViewModel ListViewModel
         {
-            get
-            {
-                return base.ViewModel as CustomerListViewModel;
-            }
-            set
-            {
-                base.ViewModel = value;
-            }
+            get => base.ViewModel as CustomerListViewModel;
+            set => base.ViewModel = value;
         }
     }
 }
