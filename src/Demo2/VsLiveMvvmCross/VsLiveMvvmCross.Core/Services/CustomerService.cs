@@ -14,7 +14,8 @@ namespace VsLiveMvvmCross.Core.Services
 
         public ObservableCollection<Customer> GetCustomerList()
         {
-            return GetCustomerStore();
+            var serializer = new MvxJsonConverter();
+            return serializer.DeserializeObject<ObservableCollection<Customer>>(serializer.SerializeObject(GetCustomerStore()));
         }
 
         public Customer GetCustomerById(Guid customerId)

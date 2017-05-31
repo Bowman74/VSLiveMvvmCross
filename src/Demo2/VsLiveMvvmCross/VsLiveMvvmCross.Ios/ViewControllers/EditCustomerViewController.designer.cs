@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -14,6 +14,10 @@ namespace VsLiveMvvmCross.ViewControllers
     [Register ("EditCustomerViewController")]
     partial class EditCustomerViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton closeForm { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField contactName { get; set; }
@@ -32,6 +36,11 @@ namespace VsLiveMvvmCross.ViewControllers
 
         void ReleaseDesignerOutlets ()
         {
+            if (closeForm != null) {
+                closeForm.Dispose ();
+                closeForm = null;
+            }
+
             if (contactName != null) {
                 contactName.Dispose ();
                 contactName = null;

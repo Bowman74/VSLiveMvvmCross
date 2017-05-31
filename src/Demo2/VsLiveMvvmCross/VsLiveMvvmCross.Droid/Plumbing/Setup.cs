@@ -5,6 +5,7 @@ using MvvmCross.Droid.Platform;
 using MvvmCross.Platform;
 using VsLiveMvvmCross.Core.Plumbing;
 using VsLiveMvvmCross.Core.Services;
+using VsLiveMvvmCross.Plumbing;
 using VsLiveMvvmCross.Services;
 
 //This hhas to match default namespace.
@@ -22,5 +23,10 @@ namespace VsLiveMvvmCross
             Mvx.RegisterType<IUserDialogService, UserDialogService>();
             return app;
         }
+
+        //protected override MvvmCross.Droid.Views.IMvxAndroidViewPresenter CreateViewPresenter()
+        //{
+        //    return new CustomPresenter();
+        //}
     }
 }

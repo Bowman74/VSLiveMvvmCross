@@ -1,38 +1,28 @@
 ﻿using System;
 using Android.OS;
 using Android.Support.V7.Widget;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using VsLiveMvvmCross.Core.ViewModels;
 using VsLiveMvvmCross.Plumbing;
 
 namespace VsLiveMvvmCross.Activities
 {
-    public class BaseActivity<T> : MvxAppCompatActivity<T> where T : BaseViewModel
+    public class BaseActivity<T> : MvxAppCompatActivity<T> where T : MvxViewModel
     {
+        protected Toolbar _toolbar;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.commonToolbar);
-            if (toolbar != null)
+            _toolbar = FindViewById<Toolbar>(Resource.Id.commonToolbar);
+            if (_toolbar != null)
             {
-                SetSupportActionBar(toolbar);
+                SetSupportActionBar(_toolbar);
 
                 SupportActionBar.Subtitle = string.Empty;
-                toolbar.NavigationClick += GoBack;
             }
-
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            ActivityHolder.CurrentActivity = this;
-        }
-
-        private void GoBack(object sender, Toolbar.NavigationClickEventArgs e)
-        {
-            Finish();
         }
     }
 }

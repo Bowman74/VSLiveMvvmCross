@@ -3,7 +3,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace VsLiveMvvmCross.Core.ViewModels
 {
-    public class BaseViewModel : MvxViewModel
+    public class BaseViewModel<T> : MvxViewModel<T> where T : class
     {
         public BaseViewModel()
         {

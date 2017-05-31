@@ -3,9 +3,13 @@ using System;
 using UIKit;
 using VsLiveMvvmCross.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
+using MvvmCross.iOS.Views;
 
 namespace VsLiveMvvmCross.ViewControllers
 {
+    [MvxRootPresentation(WrapInNavigationController = true)]
+    [MvxFromStoryboard("Customers")]
     public partial class CustomerListViewController : BaseViewController<CustomerListViewModel>
     {
         public CustomerListViewController (IntPtr handle) : base (handle)

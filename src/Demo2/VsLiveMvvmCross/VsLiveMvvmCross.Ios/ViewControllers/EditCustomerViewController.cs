@@ -3,10 +3,14 @@ using System;
 using VsLiveMvvmCross.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using VsLiveMvvmCross.Core.Converters;
+using MvvmCross.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 
 namespace VsLiveMvvmCross.ViewControllers
 {
-    public partial class EditCustomerViewController : BaseViewController<EditCustomerViewModel>
+    [MvxFromStoryboard("EditCustomer")]
+    [MvxModalPresentation]
+    public partial class EditCustomerViewController : MvxViewController<EditCustomerViewModel>
     {
         public EditCustomerViewController (IntPtr handle) : base (handle)
         {
@@ -22,6 +26,7 @@ namespace VsLiveMvvmCross.ViewControllers
                 this.CreateBinding(saveCustomer).To<EditCustomerViewModel>(vm => vm.SaveCustomerCommand).Apply();
                 this.CreateBinding(deleteCustomer).To<EditCustomerViewModel>(vm => vm.DeleteCommand).Apply();
                 this.CreateBinding(deleteCustomer).For(c => c.Enabled).To<EditCustomerViewModel>(vm => vm.IsNew).WithConversion(new InvertedBoolValueConverter(), null).Apply();
+                this.CreateBinding(closeForm).To<EditCustomerViewModel>(ViewModel => ViewModel.CloseCommand).Apply();
             });
         }
     }

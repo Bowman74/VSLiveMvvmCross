@@ -22,11 +22,5 @@ namespace VsLiveMvvmCross.Plumbing
             Mvx.RegisterType<IUserDialogService, UserDialogService>();
             return app;
         }
-
-        protected override IMvxIosViewsContainer CreateIosViewsContainer()
-        {
-            return new ViewsContainer();
-        }
     }
 }
-

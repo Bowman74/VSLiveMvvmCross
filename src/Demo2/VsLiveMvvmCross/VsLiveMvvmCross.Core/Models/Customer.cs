@@ -8,32 +8,22 @@ namespace VsLiveMvvmCross.Core.Models
         private Guid _customerId;
         public Guid CustomerId 
         { 
-            get { return _customerId; }
-            set
-            {
-                SetProperty(ref _customerId, value);
-            }
-
+            get => _customerId;
+            set => SetProperty(ref _customerId, value);
         }
 
         private string _customerName;
         public string CustomerName 
         { 
-            get { return _customerName; }
-            set
-            {
-                SetProperty(ref _customerName, value);
-            }
+            get => _customerName;
+            set => SetProperty(ref _customerName, value);
         }
 
         private string _contactName;
         public string ContactName 
         {
-            get { return _contactName; }
-            set
-            {
-                SetProperty(ref _contactName, value);
-            }
+            get => _contactName;
+            set => SetProperty(ref _contactName, value);
         }
     }
 }

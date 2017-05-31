@@ -1,0 +1,82 @@
+﻿using Android.App;
+using Android.Content;
+
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Core.Views;
+using MvvmCross.Droid.Views;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
+using MvvmCross.Platform.Platform;
+
+namespace VsLiveMvvmCross.Plumbing
+{
+    public class CustomPresenter : MvxViewPresenter, IMvxAndroidViewPresenter
+    {
+        protected Activity Activity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+
+        public override void Show(MvxViewModelRequest request)
+        {
+            var intent = this.CreateIntentForRequest(request);
+            Show(intent);
+        }
+
+        protected virtual void Show(Intent intent)
+        {
+            var activity = this.Activity;
+            if (activity == null)
+            {
+                MvxTrace.Warning("Cannot Resolve current top activity");
+                return;
+            }
+            activity.StartActivity(intent);
+        }
+
+        protected virtual Intent CreateIntentForRequest(MvxViewModelRequest request)
+        {
+            IMvxAndroidViewModelRequestTranslator requestTranslator = Mvx.Resolve<IMvxAndroidViewModelRequestTranslator>();
+
+            if (request is MvxViewModelInstanceRequest)
+            {
+                var instanceRequest = requestTranslator.GetIntentWithKeyFor(((MvxViewModelInstanceRequest)request).ViewModelInstance);
+                //requestTranslator.RemoveSubViewModelWithKey(instanceRequest.Item2);
+                return instanceRequest.Item1;
+            }
+            return requestTranslator.GetIntentFor(request);
+        }
+
+        public override void ChangePresentation(MvxPresentationHint hint)
+        {
+            if (HandlePresentationChange(hint)) return;
+
+            var presentationHint = hint as MvxClosePresentationHint;
+            if (presentationHint != null)
+            {
+                this.Close(presentationHint.ViewModelToClose);
+                return;
+            }
+
+            MvxTrace.Warning("Hint ignored {0}", hint.GetType().Name);
+        }
+
+        public override void Close(IMvxViewModel viewModel)
+        {
+            var activity = this.Activity;
+
+            var currentView = activity as IMvxView;
+
+            if (currentView == null)
+            {
+                Mvx.Warning("Ignoring close for viewmodel - rootframe has no current page");
+                return;
+            }
+
+            if (currentView.ViewModel != viewModel)
+            {
+                Mvx.Warning("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
+                return;
+            }
+
+            activity.Finish();
+        }
+    }
+}
