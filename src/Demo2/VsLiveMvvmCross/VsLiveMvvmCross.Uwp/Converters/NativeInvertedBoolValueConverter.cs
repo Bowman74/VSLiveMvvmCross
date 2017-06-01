@@ -1,4 +1,4 @@
-﻿using MvvmCross.Platform.WindowsCommon.Converters;
+﻿using MvvmCross.Platform.Uwp.Converters;
 using VsLiveMvvmCross.Core.Converters;
 
 namespace VsLiveMvvmCross.Uwp.Converters

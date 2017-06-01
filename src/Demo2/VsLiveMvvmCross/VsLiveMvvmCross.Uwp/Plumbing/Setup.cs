@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml.Controls;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-using MvvmCross.WindowsUWP.Platform;
 using VsLiveMvvmCross.Core.Services;
 using VsLiveMvvmCross.Uwp.Services;
+using MvvmCross.Uwp.Platform;
 
 namespace VsLiveMvvmCross.Uwp.Plumbing
 {

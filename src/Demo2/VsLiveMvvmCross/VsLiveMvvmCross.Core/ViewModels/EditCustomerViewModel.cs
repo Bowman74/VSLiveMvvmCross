@@ -15,6 +15,7 @@ namespace VsLiveMvvmCross.Core.ViewModels
         private IUserDialogService _userDialogService;
         private Customer _customer;
         private bool _isNew;
+        private Guid _instance = Guid.NewGuid();
 
         public EditCustomerViewModel(ICustomerService customerService, IUserDialogService userDialogService)
         {
@@ -22,12 +23,12 @@ namespace VsLiveMvvmCross.Core.ViewModels
             _userDialogService = userDialogService;
             Customer = _customerService.CreateNewCustomer();
             IsNew = true;
-            Debug.WriteLine("EditCustomerViewModel: constructor");
+            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: constructor");
         }
 
         public override Task Initialize(MvxBundle parameter)
         {
-            Debug.WriteLine("EditCustomerViewModel: initialize");
+            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: initialize");
             if (parameter != null && 
                 parameter.Data.TryGetValue("customerId", out string custId))
             {
@@ -42,25 +43,25 @@ namespace VsLiveMvvmCross.Core.ViewModels
 
         public override void Appearing()
         {
-            Debug.WriteLine("EditCustomerViewModel: appearing");
+            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: appearing");
             base.Appearing();
         }
 
         public override void Appeared()
         {
-            Debug.WriteLine("EditCustomerViewModel: appeared");
+            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: appeared");
             base.Appeared();
         }
 
         public override void Disappearing()
         {
-            Debug.WriteLine("EditCustomerViewModel: disappearing");
+            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: disappearing");
             base.Disappearing();
         }
 
         public override void Disappeared()
         {
-            Debug.WriteLine("EditCustomerViewModel: disappeared");
+            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: disappeared");
             base.Disappeared();
         }
 
