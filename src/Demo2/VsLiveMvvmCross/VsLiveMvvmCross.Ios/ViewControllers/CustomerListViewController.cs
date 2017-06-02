@@ -17,21 +17,20 @@ namespace VsLiveMvvmCross.ViewControllers
             
         }
 
-        public override void ViewWillAppear(bool animated)
+        public override void ViewDidLoad()
         {
-            base.ViewWillAppear(animated);
-
+            base.ViewDidLoad();
             if (tblCustomers.Source == null)
             {
                 var source = new CustomerListViewSource(tblCustomers, typeof(CustomerListCell), CustomerListCell.Key);
-
-                this.CreateBinding(source).To<CustomerListViewModel>(ViewModel => ViewModel.Customers).Apply();
-                this.CreateBinding(source).For(s => s.SelectionChangedCommand).To<CustomerListViewModel>(vm => vm.CustomerSelectedCommand).Apply();
+                var bindingSet = this.CreateBindingSet<CustomerListViewController, CustomerListViewModel>();
+                bindingSet.Bind(source).To(ViewModel => ViewModel.Customers);
+                bindingSet.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.CustomerSelectedCommand);
+                bindingSet.Bind(addButton).To(vm => vm.AddCustomerCommand);
+                bindingSet.Apply();
 
                 tblCustomers.Source = source;
                 tblCustomers.ReloadData();
-
-                this.CreateBinding(addButton).To<CustomerListViewModel>(vm => vm.AddCustomerCommand).Apply();
             }
         }
 

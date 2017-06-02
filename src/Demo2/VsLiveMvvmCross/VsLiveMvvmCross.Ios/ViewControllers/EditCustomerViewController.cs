@@ -21,12 +21,14 @@ namespace VsLiveMvvmCross.ViewControllers
         {
             this.DelayBind(() =>
             {
-                this.CreateBinding(customerName).For(c => c.Text).To<EditCustomerViewModel>(vm => vm.Customer.CustomerName).Apply();
-                this.CreateBinding(contactName).For(c => c.Text).To<EditCustomerViewModel>(vm => vm.Customer.ContactName).Apply();
-                this.CreateBinding(saveCustomer).To<EditCustomerViewModel>(vm => vm.SaveCustomerCommand).Apply();
-                this.CreateBinding(deleteCustomer).To<EditCustomerViewModel>(vm => vm.DeleteCommand).Apply();
-                this.CreateBinding(deleteCustomer).For(c => c.Enabled).To<EditCustomerViewModel>(vm => vm.IsNew).WithConversion(new InvertedBoolValueConverter(), null).Apply();
-                this.CreateBinding(closeForm).To<EditCustomerViewModel>(ViewModel => ViewModel.CloseCommand).Apply();
+                var bindingSet = this.CreateBindingSet<EditCustomerViewController, EditCustomerViewModel>();
+                bindingSet.Bind(customerName).For(c => c.Text).To(vm => vm.Customer.CustomerName);
+                bindingSet.Bind(contactName).For(c => c.Text).To(vm => vm.Customer.ContactName);
+                bindingSet.Bind(saveCustomer).To(vm => vm.SaveCustomerCommand);
+                bindingSet.Bind(deleteCustomer).To(vm => vm.DeleteCommand);
+                bindingSet.Bind(deleteCustomer).For(c => c.Enabled).To(vm => vm.IsNew).WithConversion<InvertedBoolValueConverter>();
+                bindingSet.Bind(closeForm).To(ViewModel => ViewModel.CloseCommand);
+                bindingSet.Apply();
             });
         }
     }
