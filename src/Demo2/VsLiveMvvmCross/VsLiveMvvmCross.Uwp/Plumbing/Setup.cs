@@ -4,6 +4,7 @@ using MvvmCross.Platform;
 using VsLiveMvvmCross.Core.Services;
 using VsLiveMvvmCross.Uwp.Services;
 using MvvmCross.Uwp.Platform;
+using MvvmCross.Uwp.Views;
 
 namespace VsLiveMvvmCross.Uwp.Plumbing
 {
@@ -19,5 +20,10 @@ namespace VsLiveMvvmCross.Uwp.Plumbing
             Mvx.RegisterType<IUserDialogService, UserDialogService>();
             return app;
         }
+
+        //protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
+        //{
+        //    return new CustomViewPresenter(rootFrame);
+        //}
     }
 }
