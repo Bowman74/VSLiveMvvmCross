@@ -103,6 +103,7 @@
     <Compile Include="EditCustomer.xaml.cs">
       <DependentUpon>EditCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plumbing\CustomPresenter.cs" />
     <Compile Include="Plumbing\Setup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserDialogService.cs" />

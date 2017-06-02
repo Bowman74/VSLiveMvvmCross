@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MvvmCross.Core.ViewModels;
 using VsLiveMvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
+using MvvmCross.Core.Views;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,6 +31,7 @@ namespace VsLiveMvvmCross.Uwp
         public CustomerList()
         {
             this.InitializeComponent();
+
             lstCustomers.SelectionChanged += LstCustomersOnSelectionChanged;
         }
 
