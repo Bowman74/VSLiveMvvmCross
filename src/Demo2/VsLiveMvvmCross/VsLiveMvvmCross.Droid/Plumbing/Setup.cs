@@ -2,6 +2,7 @@
 using Android.Content;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
+using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using VsLiveMvvmCross.Core.Plumbing;
 using VsLiveMvvmCross.Core.Services;
@@ -24,9 +25,14 @@ namespace VsLiveMvvmCross
             return app;
         }
 
-        //protected override MvvmCross.Droid.Views.IMvxAndroidViewPresenter CreateViewPresenter()
-        //{
-        //    return new CustomPresenter();
-        //}
+        protected override MvvmCross.Droid.Views.IMvxAndroidViewPresenter CreateViewPresenter()
+        {
+            return new CustomPresenter();
+        }
+
+        protected override IMvxAndroidViewsContainer CreateViewsContainer(Context applicationContext)
+        {
+            return new CustomViewsContainer(applicationContext);
+        }
     }
 }

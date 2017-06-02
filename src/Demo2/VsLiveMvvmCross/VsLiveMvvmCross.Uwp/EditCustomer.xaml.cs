@@ -29,12 +29,6 @@ namespace VsLiveMvvmCross.Uwp
         public EditCustomer()
         {
             this.InitializeComponent();
-            this.DataContextChanged += EditCustomer_DataContextChanged;
-        }
-
-        private void EditCustomer_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            var a = 1;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

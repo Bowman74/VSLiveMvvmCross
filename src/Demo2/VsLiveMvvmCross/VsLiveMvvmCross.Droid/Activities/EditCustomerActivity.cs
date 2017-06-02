@@ -22,15 +22,17 @@ namespace VsLiveMvvmCross.Activities
             SupportActionBar.SetDisplayShowHomeEnabled(true);
 
             var customerName = FindViewById<EditText>(Resource.Id.customerName);
-            this.CreateBinding(customerName).For(c => c.Text).To<EditCustomerViewModel>(vm => vm.Customer.CustomerName).Apply();
             var contactName = FindViewById<EditText>(Resource.Id.contactName);
-            this.CreateBinding(contactName).For(c => c.Text).To<EditCustomerViewModel>(vm => vm.Customer.ContactName).Apply();
-
             var saveCustomer = FindViewById<Button>(Resource.Id.saveCustomer);
-            this.CreateBinding(saveCustomer).For("Click").To<EditCustomerViewModel>(vm => vm.SaveCustomerCommand).Apply();
             var deleteCustomer = FindViewById<Button>(Resource.Id.deleteCustomer);
-            this.CreateBinding(deleteCustomer).For("Click").To<EditCustomerViewModel>(vm => vm.DeleteCommand).Apply();
-            this.CreateBinding(deleteCustomer).For(b => b.Enabled).To<EditCustomerViewModel>(vm => vm.IsNew).WithConversion(new  InvertedBoolValueConverter(), null).Apply();
+
+            var bindingSet = this.CreateBindingSet<EditCustomerActivity, EditCustomerViewModel>();
+            bindingSet.Bind(customerName).For(c => c.Text).To(vm => vm.Customer.CustomerName);
+            bindingSet.Bind(contactName).For(c => c.Text).To(vm => vm.Customer.ContactName);
+            bindingSet.Bind(saveCustomer).For("Click").To(vm => vm.SaveCustomerCommand);
+            bindingSet.Bind(deleteCustomer).For("Click").To(vm => vm.DeleteCommand);
+            bindingSet.Bind(deleteCustomer).For(b => b.Enabled).To(vm => vm.IsNew).WithConversion<InvertedBoolValueConverter>();
+            bindingSet.Apply();
         }
 
         protected override void OnResume()

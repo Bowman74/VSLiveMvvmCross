@@ -18,12 +18,19 @@ namespace VsLiveMvvmCross.Activities
             base.OnCreate(bundle);
 
             var customerList = FindViewById<MvxListView>(Resource.Id.customerListView);
-
-            this.CreateBinding(customerList).For(c => c.ItemsSource).To<CustomerListViewModel>(vm => vm.Customers).Apply();
-            this.CreateBinding(customerList).For(c => c.ItemClick).To<CustomerListViewModel>(vm => vm.CustomerSelectedCommand).Apply();
-
             var addCustomer = FindViewById<Button>(Resource.Id.addCustomer);
-            this.CreateBinding(addCustomer).For("Click").To<CustomerListViewModel>(vm => vm.AddCustomerCommand).Apply();
+
+            var bindingSet = this.CreateBindingSet<CustomerListActivity, CustomerListViewModel>();
+            bindingSet.Bind(customerList).For(c => c.ItemsSource).To(vm => vm.Customers);
+            bindingSet.Bind(customerList).For(c => c.ItemClick).To(vm => vm.CustomerSelectedCommand);
+            bindingSet.Bind(addCustomer).For("Click").To(vm => vm.AddCustomerCommand);
+            bindingSet.Apply();
+
+            //this.CreateBinding(customerList).For(c => c.ItemsSource).To<CustomerListViewModel>(vm => vm.Customers).Apply();
+            //this.CreateBinding(customerList).For(c => c.ItemClick).To<CustomerListViewModel>(vm => vm.CustomerSelectedCommand).Apply();
+
+            
+            //this.CreateBinding(addCustomer).For("Click").To<CustomerListViewModel>(vm => vm.AddCustomerCommand).Apply();
         }
     }
 }
