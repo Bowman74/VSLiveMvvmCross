@@ -24,15 +24,5 @@ namespace VsLiveMvvmCross
             Mvx.RegisterType<IUserDialogService, UserDialogService>();
             return app;
         }
-
-        protected override MvvmCross.Droid.Views.IMvxAndroidViewPresenter CreateViewPresenter()
-        {
-            return new CustomPresenter();
-        }
-
-        protected override IMvxAndroidViewsContainer CreateViewsContainer(Context applicationContext)
-        {
-            return new CustomViewsContainer(applicationContext);
-        }
     }
 }

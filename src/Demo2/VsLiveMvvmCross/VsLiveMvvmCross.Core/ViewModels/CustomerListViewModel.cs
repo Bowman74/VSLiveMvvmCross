@@ -16,49 +16,41 @@ namespace VsLiveMvvmCross.Core.ViewModels
     {
         private ICustomerService _customerService;
         private IMvxNavigationService _navigationService;
-        private Guid _instance = Guid.NewGuid();
 
         public CustomerListViewModel(ICustomerService customerService, IMvxNavigationService navigationService)
         {
             _customerService = customerService;
             _navigationService = navigationService;
-            Debug.WriteLine($"CustomerListViewModel: instance: {_instance.ToString()}: constructor");
         }
 
         public override void Start()
         {
             base.Start();
             Customers = _customerService.GetCustomerList();
-            Debug.WriteLine($"CustomerListViewModel: instance: {_instance.ToString()}: start");
         }
 
         public override Task Initialize()
         {
-            Debug.WriteLine($"CustomerListViewModel: instance: {_instance.ToString()}: initialize");
             return base.Initialize();
         }
 
         public override void Appearing()
         {
-            Debug.WriteLine($"CustomerListViewModel: instance: {_instance.ToString()}: appearing");
             base.Appearing();
         }
 
         public override void Appeared()
         {
-            Debug.WriteLine($"CustomerListViewModel: instance: {_instance.ToString()}: appeared");
             base.Appeared();
         }
 
         public override void Disappearing()
         {
-            Debug.WriteLine($"CustomerListViewModel: instance: {_instance.ToString()}: disappearing");
             base.Disappearing();
         }
 
         public override void Disappeared()
         {
-            Debug.WriteLine($"CustomerListViewModel: instance: {_instance.ToString()}: disappeared");
             base.Disappeared();
         }
 

@@ -23,12 +23,10 @@ namespace VsLiveMvvmCross.Core.ViewModels
             _userDialogService = userDialogService;
             Customer = _customerService.CreateNewCustomer();
             IsNew = true;
-            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: constructor");
         }
 
         public override Task Initialize(MvxBundle parameter)
         {
-            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: initialize");
             if (parameter != null && 
                 parameter.Data.TryGetValue("customerId", out string custId))
             {
@@ -43,7 +41,6 @@ namespace VsLiveMvvmCross.Core.ViewModels
 
         public override void Appearing()
         {
-            Debug.WriteLine($"EditCustomerViewModel: instance: {_instance.ToString()}: appearing");
             base.Appearing();
         }
 

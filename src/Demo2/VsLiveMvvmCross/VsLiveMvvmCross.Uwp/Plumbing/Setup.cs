@@ -20,10 +20,5 @@ namespace VsLiveMvvmCross.Uwp.Plumbing
             Mvx.RegisterType<IUserDialogService, UserDialogService>();
             return app;
         }
-
-        //protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
-        //{
-        //    return new CustomViewPresenter(rootFrame);
-        //}
     }
 }

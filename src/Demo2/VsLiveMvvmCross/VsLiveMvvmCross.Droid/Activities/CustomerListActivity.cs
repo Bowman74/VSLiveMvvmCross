@@ -25,12 +25,6 @@ namespace VsLiveMvvmCross.Activities
             bindingSet.Bind(customerList).For(c => c.ItemClick).To(vm => vm.CustomerSelectedCommand);
             bindingSet.Bind(addCustomer).For("Click").To(vm => vm.AddCustomerCommand);
             bindingSet.Apply();
-
-            //this.CreateBinding(customerList).For(c => c.ItemsSource).To<CustomerListViewModel>(vm => vm.Customers).Apply();
-            //this.CreateBinding(customerList).For(c => c.ItemClick).To<CustomerListViewModel>(vm => vm.CustomerSelectedCommand).Apply();
-
-            
-            //this.CreateBinding(addCustomer).For("Click").To<CustomerListViewModel>(vm => vm.AddCustomerCommand).Apply();
-        }
+       }
     }
 }
